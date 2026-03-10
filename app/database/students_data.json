@@ -1,0 +1,140 @@
+[
+  {
+    "student_id": "STU20260001",
+    "application_id": "APP20260001",
+    "personal_info": {
+      "first_name": "Arjun",
+      "last_name": "Narayanan",
+      "full_name": "Arjun Narayanan",
+      "gender": "Male",
+      "date_of_birth": "2005-03-14",
+      "age": 20,
+      "contact": {
+        "phone": "+919876543210",
+        "whatsapp": "+919876543210",
+        "email": "arjun.narayanan@gmail.com"
+      },
+      "address": {
+        "street": "Anna Nagar West",
+        "city": "Chennai",
+        "state": "Tamil Nadu",
+        "country": "India",
+        "pincode": "600040"
+      }
+    },
+    "academic_info": {
+      "tenth": {
+        "board": "CBSE",
+        "school": "DAV Public School Chennai",
+        "year": 2021,
+        "marks_obtained": 468,
+        "max_marks": 500,
+        "percentage": 93.6
+      },
+      "twelfth": {
+        "board": "Tamil Nadu State Board",
+        "school": "St Joseph Higher Secondary School",
+        "stream": "Computer Science",
+        "year": 2023,
+        "marks_obtained": 1092,
+        "max_marks": 1200,
+        "percentage": 91.0
+      }
+    },
+    "admission_info": {
+      "applied_college": "ABC Engineering College Chennai",
+      "college_details": {
+        "college_id": "COLL001",
+        "college_address": "OMR Road, Chennai, Tamil Nadu, 600119",
+        "college_phone": "+914412345678",
+        "college_email": "admissions@abcengineering.edu",
+        "student_portal_url": "https://portal.abcengineering.edu",
+        "accounts_office_location": "Ground Floor, Admin Block, ABC Engineering College",
+        "accounts_office_timings": "Monday to Friday, 9:00 AM to 4:00 PM"
+      },
+      "applied_course": "B.Tech Computer Science and Engineering",
+      "department": "Computer Science Engineering",
+      "application_date": "2026-01-15",
+      "admission_status": "Accepted",
+      "admission_confirmation_date": "2026-02-10",
+      "admission_deadline": "2026-03-01",
+      "enrollment_status": "Confirmed",
+      "student_roll_number": "CSE20260045",
+      "student_portal_login_status": "Activated"
+    },
+    "fees_info": {
+      "fee_structure": {
+        "total_fees": 150000,
+        "tuition_fees": 120000,
+        "admission_fees": 20000,
+        "other_fees": 10000
+      },
+      "payment_summary": {
+        "paid_amount": 50000,
+        "remaining_amount": 100000,
+        "last_payment_date": "2026-02-12",
+        "next_payment_deadline": "2026-03-01",
+        "payment_status": "Partial"
+      },
+      "payment_methods": {
+        "online_payment_url": "https://portal.abcengineering.edu/pay-fees",
+        "accepted_methods": [
+          "UPI",
+          "Credit Card",
+          "Debit Card",
+          "Net Banking"
+        ],
+        "offline_payment_location": "Accounts Office, Ground Floor, Admin Block",
+        "offline_payment_contact": "+914412345679"
+      }
+    },
+    "documents": {
+      "tenth_marksheet": {
+        "uploaded": true,
+        "verified": true,
+        "verified_date": "2026-01-20"
+      },
+      "twelfth_marksheet": {
+        "uploaded": true,
+        "verified": false,
+        "verification_status": "Pending",
+        "remarks": "Under review by admission office"
+      },
+      "passport_photo": {
+        "uploaded": true,
+        "verified": true
+      },
+      "id_proof": {
+        "uploaded": true,
+        "verified": true
+      }
+    },
+    "support_info": {
+      "assigned_counselor": {
+        "name": "Priya Sharma",
+        "phone": "+919812345678",
+        "email": "priya.sharma@abcengineering.edu"
+      },
+      "technical_support": {
+        "phone": "+914412345680",
+        "email": "support@abcengineering.edu"
+      },
+      "admission_office": {
+        "location": "Admin Block, First Floor",
+        "office_hours": "9:00 AM to 5:00 PM"
+      }
+    },
+    "interaction_info": {
+      "last_contacted": "2026-02-17",
+      "communication_channel": "WhatsApp",
+      "lead_score": 92,
+      "interest_level": "High",
+      "last_query": "Asked about remaining fees and payment methods"
+    },
+    "system_metadata": {
+      "created_at": "2026-01-15T10:30:00Z",
+      "updated_at": "2026-02-17T15:45:00Z",
+      "record_status": "Active"
+    }
+  }
+]

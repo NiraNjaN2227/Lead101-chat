@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Student Assistant</title>
+    <!-- Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="chat-container">
+        <header>
+            <h1>AI Student Assistant</h1>
+            <button id="reset-btn" title="Clear Chat History">
+                <i class="fas fa-trash-alt"></i> Clear Chat
+            </button>
+        </header>
+
+        <div id="chat-window">
+            <!-- Welcome Message -->
+            <div class="message assistant">
+                <div class="message-content">
+                    <div class="avatar">🤖</div>
+                    <div class="text">Hi there! I'm your admission assistant. To get started, could you share your
+                        student ID? It looks like STU2026XXXX.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="input-area">
+            <div class="input-container">
+                <input type="text" id="user-input" placeholder="Type a message..." autocomplete="off">
+                <button id="send-btn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const chatWindow = document.getElementById('chat-window');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+        const resetBtn = document.getElementById('reset-btn');
+
+        // Session ID (simple simulation)
+        const SESSION_ID = "web-session-" + Math.random().toString(36).substring(7);
+        let STUDENT_ID = "";
+
+        function appendMessage(role, text) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${role}`;
+
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+
+            const avatar = document.createElement('div');
+            avatar.className = 'avatar';
+            avatar.textContent = role === 'user' ? '👤' : '🤖';
+
+            const textDiv = document.createElement('div');
+            textDiv.className = 'text';
+
+            if (role === 'assistant') {
+                // Parse markdown for assistant replies
+                textDiv.innerHTML = marked.parse(text);
+            } else {
+                textDiv.innerText = text; // Safe text insertion for user input
+            }
+
+            contentDiv.appendChild(avatar);
+            contentDiv.appendChild(textDiv);
+            msgDiv.appendChild(contentDiv);
+
+            chatWindow.appendChild(msgDiv);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+        async function sendMessage() {
+            const text = userInput.value.trim();
+            if (!text) return;
+
+
+
+            // 1. Append User Message
+            appendMessage('user', text);
+            userInput.value = '';
+
+            // 2. Show Typing Indicator
+            const typingId = 'typing-' + Date.now();
+            showTypingIndicator(typingId);
+
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        user_message: text,
+                        student_id: STUDENT_ID,
+                        session_id: SESSION_ID
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+
+                // Remove Typing Indicator
+                removeTypingIndicator(typingId);
+
+                // 3. Append Assistant Reply
+                appendMessage('assistant', data.reply);
+
+            } catch (error) {
+                console.error('Error:', error);
+                removeTypingIndicator(typingId);
+                appendMessage('assistant', "Sorry, I encountered an error. Please try again.");
+            }
+        }
+
+        // Event Listeners
+        sendBtn.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        resetBtn.addEventListener('click', async () => {
+            if (confirm("Are you sure you want to clear the chat history?")) {
+                try {
+                    await fetch(`/session/${SESSION_ID}`, { method: 'DELETE' });
+                    // Clear the UI
+                    chatWindow.innerHTML = `
+                        <div class="message assistant">
+                            <div class="message-content">
+                                <div class="avatar">🤖</div>
+                                <div class="text">Chat history cleared. How can I help you today?</div>
+                            </div>
+                        </div>
+                    `;
+                } catch (e) {
+                    console.error("Failed to clear session", e);
+                }
+            }
+        });
+
+        // Helper functions for typing indicator
+        function showTypingIndicator(id) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message assistant`;
+            msgDiv.id = id;
+
+            msgDiv.innerHTML = `
+                <div class="message-content">
+                    <div class="avatar">🤖</div>
+                    <div class="text">
+                        <div class="typing-indicator">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            chatWindow.appendChild(msgDiv);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+        function removeTypingIndicator(id) {
+            const indicator = document.getElementById(id);
+            if (indicator) {
+                indicator.remove();
+            }
+        }
+    </script>
+
+</body>
+
+</html>

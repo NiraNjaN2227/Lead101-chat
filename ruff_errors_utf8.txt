@@ -1,0 +1,273 @@
+﻿F541 [*] f-string without any placeholders
+  --> app\agents\response_templates.py:59:22
+   |
+58 |     if structure:
+59 |         parts.append(f"Fee Breakdown:")
+   |                      ^^^^^^^^^^^^^^^^^
+60 |         parts.append(f"  Tuition: {_fmt(structure.get('tuition_fees'))}")
+61 |         parts.append(f"  Admission: {_fmt(structure.get('admission_fees'))}")
+   |
+help: Remove extraneous `f` prefix
+
+F541 [*] f-string without any placeholders
+  --> app\agents\response_templates.py:66:22
+   |
+65 |     if summary:
+66 |         parts.append(f"\nPayment Status:")
+   |                      ^^^^^^^^^^^^^^^^^^^^
+67 |         parts.append(f"  Paid: {_fmt(summary.get('paid_amount'))}")
+68 |         parts.append(f"  Remaining: {_fmt(summary.get('remaining_amount'))}")
+   |
+help: Remove extraneous `f` prefix
+
+F541 [*] f-string without any placeholders
+  --> app\agents\response_templates.py:90:22
+   |
+88 |     accepted = methods.get("accepted_methods", [])
+89 |     if url:
+90 |         parts.append(f"Online Payment:")
+   |                      ^^^^^^^^^^^^^^^^^^
+91 |         parts.append(f"  Link: {url}")
+92 |         if accepted:
+   |
+help: Remove extraneous `f` prefix
+
+F541 [*] f-string without any placeholders
+   --> app\agents\response_templates.py:99:22
+    |
+ 97 |     contact = methods.get("offline_payment_contact")
+ 98 |     if location:
+ 99 |         parts.append(f"\nOffline Payment:")
+    |                      ^^^^^^^^^^^^^^^^^^^^^
+100 |         parts.append(f"  Location: {location}")
+101 |         if contact:
+    |
+help: Remove extraneous `f` prefix
+
+F541 [*] f-string without any placeholders
+   --> app\agents\response_templates.py:216:22
+    |
+214 |     tenth = academic.get("tenth", {})
+215 |     if tenth:
+216 |         parts.append(f"10th Standard:")
+    |                      ^^^^^^^^^^^^^^^^^
+217 |         parts.append(f"  Board: {tenth.get('board', 'N/A')}")
+218 |         parts.append(f"  School: {tenth.get('school', 'N/A')}")
+    |
+help: Remove extraneous `f` prefix
+
+F541 [*] f-string without any placeholders
+   --> app\agents\response_templates.py:224:22
+    |
+222 |     twelfth = academic.get("twelfth", {})
+223 |     if twelfth:
+224 |         parts.append(f"\n12th Standard:")
+    |                      ^^^^^^^^^^^^^^^^^^^
+225 |         parts.append(f"  Board: {twelfth.get('board', 'N/A')}")
+226 |         parts.append(f"  School: {twelfth.get('school', 'N/A')}")
+    |
+help: Remove extraneous `f` prefix
+
+F541 [*] f-string without any placeholders
+   --> app\agents\response_templates.py:310:22
+    |
+308 |     counselor = support.get("assigned_counselor", {})
+309 |     if counselor:
+310 |         parts.append(f"Counselor:")
+    |                      ^^^^^^^^^^^^^
+311 |         parts.append(f"  {counselor.get('name', 'N/A')} - {counselor.get('phone', 'N/A')}")
+312 |         parts.append(f"  Email: {counselor.get('email', 'N/A')}")
+    |
+help: Remove extraneous `f` prefix
+
+F541 [*] f-string without any placeholders
+   --> app\agents\response_templates.py:316:22
+    |
+314 |     tech = support.get("technical_support", {})
+315 |     if tech:
+316 |         parts.append(f"\nTechnical Support:")
+    |                      ^^^^^^^^^^^^^^^^^^^^^^^
+317 |         parts.append(f"  Phone: {tech.get('phone', 'N/A')}")
+318 |         parts.append(f"  Email: {tech.get('email', 'N/A')}")
+    |
+help: Remove extraneous `f` prefix
+
+F541 [*] f-string without any placeholders
+   --> app\agents\response_templates.py:322:22
+    |
+320 |     office = support.get("admission_office", {})
+321 |     if office:
+322 |         parts.append(f"\nAdmission Office:")
+    |                      ^^^^^^^^^^^^^^^^^^^^^^
+323 |         parts.append(f"  Location: {office.get('location', 'N/A')}")
+324 |         parts.append(f"  Hours: {office.get('office_hours', 'N/A')}")
+    |
+help: Remove extraneous `f` prefix
+
+F401 [*] `typing.Optional` imported but unused
+ --> app\core\config.py:1:20
+  |
+1 | from typing import Optional
+  |                    ^^^^^^^^
+2 | import os
+3 | from pydantic import BaseModel
+  |
+help: Remove unused import: `typing.Optional`
+
+F401 [*] `json` imported but unused
+ --> app\core\llm.py:2:8
+  |
+1 | import requests
+2 | import json
+  |        ^^^^
+3 | from typing import Any, Dict, Optional
+  |
+help: Remove unused import: `json`
+
+F401 [*] `typing.Dict` imported but unused
+ --> app\core\llm_client.py:4:30
+  |
+2 | import json
+3 | import os
+4 | from typing import Optional, Dict, Any
+  |                              ^^^^
+5 | from dotenv import load_dotenv
+  |
+help: Remove unused import
+
+F401 [*] `typing.Any` imported but unused
+ --> app\core\llm_client.py:4:36
+  |
+2 | import json
+3 | import os
+4 | from typing import Optional, Dict, Any
+  |                                    ^^^
+5 | from dotenv import load_dotenv
+  |
+help: Remove unused import
+
+E722 Do not use bare `except`
+  --> app\core\llm_client.py:87:13
+   |
+85 |                     error_detail = response.json()
+86 |                     error_msg = f"{e} - Detail: {json.dumps(error_detail)}"
+87 |             except:
+   |             ^^^^^^
+88 |                 pass
+89 |             return f"LLM Error: {error_msg}"
+   |
+
+F401 [*] `typing.List` imported but unused
+ --> app\intelligence\context_builder.py:1:31
+  |
+1 | from typing import Dict, Any, List
+  |                               ^^^^
+2 | import json
+  |
+help: Remove unused import: `typing.List`
+
+F401 [*] `json` imported but unused
+ --> app\intelligence\context_builder.py:2:8
+  |
+1 | from typing import Dict, Any, List
+2 | import json
+  |        ^^^^
+3 |
+4 | class ContextBuilder:
+  |
+help: Remove unused import: `json`
+
+F401 [*] `typing.Dict` imported but unused
+ --> app\intelligence\intent_detector.py:3:20
+  |
+1 | import re
+2 | import logging
+3 | from typing import Dict, List, Tuple
+  |                    ^^^^
+4 | from difflib import get_close_matches
+  |
+help: Remove unused import
+
+F401 [*] `typing.List` imported but unused
+ --> app\intelligence\intent_detector.py:3:26
+  |
+1 | import re
+2 | import logging
+3 | from typing import Dict, List, Tuple
+  |                          ^^^^
+4 | from difflib import get_close_matches
+  |
+help: Remove unused import
+
+F841 Local variable `best_intent` is assigned to but never used
+  --> app\intelligence\intent_detector.py:44:9
+   |
+42 |         # 2. Fuzzy Matching
+43 |         # Check against all keywords
+44 |         best_intent = "unknown"
+   |         ^^^^^^^^^^^
+45 |         best_score = 0.0
+   |
+help: Remove assignment to unused variable `best_intent`
+
+F841 Local variable `best_score` is assigned to but never used
+  --> app\intelligence\intent_detector.py:45:9
+   |
+43 |         # Check against all keywords
+44 |         best_intent = "unknown"
+45 |         best_score = 0.0
+   |         ^^^^^^^^^^
+46 |         
+47 |         all_keywords = []
+   |
+help: Remove assignment to unused variable `best_score`
+
+F401 [*] `app.core.config.settings` imported but unused
+ --> app\orchestrator\orchestrator.py:6:29
+  |
+4 | from typing import Optional, Dict, Any
+5 |
+6 | from app.core.config import settings
+  |                             ^^^^^^^^
+7 | from app.services.llm_service import LLMService
+8 | from app.services.student_service import StudentService
+  |
+help: Remove unused import: `app.core.config.settings`
+
+F401 [*] `json` imported but unused
+ --> app\services\llm_service.py:2:8
+  |
+1 | import logging
+2 | import json
+  |        ^^^^
+3 | from typing import Dict, List, Optional
+4 | from openai import AsyncOpenAI, OpenAIError, APIError, AuthenticationError
+  |
+help: Remove unused import: `json`
+
+F401 [*] `typing.Optional` imported but unused
+ --> app\services\llm_service.py:3:32
+  |
+1 | import logging
+2 | import json
+3 | from typing import Dict, List, Optional
+  |                                ^^^^^^^^
+4 | from openai import AsyncOpenAI, OpenAIError, APIError, AuthenticationError
+5 | from app.core.config import settings
+  |
+help: Remove unused import: `typing.Optional`
+
+F401 [*] `app.core.exceptions.StudentNotFoundException` imported but unused
+ --> app\services\student_service.py:5:33
+  |
+3 | from typing import Dict, List, Optional
+4 | from app.core.config import settings
+5 | from app.core.exceptions import StudentNotFoundException
+  |                                 ^^^^^^^^^^^^^^^^^^^^^^^^
+6 |
+7 | logger = logging.getLogger(__name__)
+  |
+help: Remove unused import: `app.core.exceptions.StudentNotFoundException`
+
+Found 24 errors.
+[*] 21 fixable with the `--fix` option (2 hidden fixes can be enabled with the `--unsafe-fixes` option).
