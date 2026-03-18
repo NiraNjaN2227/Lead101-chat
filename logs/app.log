@@ -616,3 +616,153 @@
 2026-03-10 11:03:18,237 - uvicorn.error - INFO - Waiting for application shutdown.
 2026-03-10 11:03:18,237 - uvicorn.error - INFO - Application shutdown complete.
 2026-03-10 11:03:18,237 - uvicorn.error - INFO - Finished server process [13992]
+2026-03-10 11:05:55,634 - app.orchestrator.orchestrator - INFO - Intent: admission_status (Conf: 0.48)
+2026-03-10 11:05:55,634 - app.orchestrator.orchestrator - INFO - Tier 3 Response (LLM)
+2026-03-10 11:05:57,283 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-10 11:05:57,287 - app.services.llm_service - INFO - LLM Success. Tokens: 1088 (Prompt: 1029, Completion: 59)
+2026-03-10 11:05:57,288 - app.orchestrator.orchestrator - INFO - Total Latency: 1.6905s
+2026-03-10 11:05:57,288 - uvicorn.access - INFO - 127.0.0.1:59766 - "POST /chat HTTP/1.1" 200
+2026-03-16 15:49:08,829 - uvicorn.error - INFO - Started server process [37992]
+2026-03-16 15:49:08,829 - uvicorn.error - INFO - Waiting for application startup.
+2026-03-16 15:49:08,830 - uvicorn.error - INFO - Application startup complete.
+2026-03-16 15:49:18,613 - uvicorn.error - INFO - Shutting down
+2026-03-16 15:49:18,728 - uvicorn.error - INFO - Waiting for application shutdown.
+2026-03-16 15:49:18,728 - uvicorn.error - INFO - Application shutdown complete.
+2026-03-16 15:49:18,729 - uvicorn.error - INFO - Finished server process [37992]
+2026-03-16 15:49:23,556 - uvicorn.error - INFO - Started server process [47040]
+2026-03-16 15:49:23,557 - uvicorn.error - INFO - Waiting for application startup.
+2026-03-16 15:49:23,557 - uvicorn.error - INFO - Application startup complete.
+2026-03-16 15:49:25,494 - uvicorn.access - INFO - 127.0.0.1:54970 - "GET / HTTP/1.1" 200
+2026-03-16 15:49:25,543 - uvicorn.access - INFO - 127.0.0.1:54970 - "GET /static/styles.css HTTP/1.1" 200
+2026-03-16 15:52:48,009 - uvicorn.access - INFO - 127.0.0.1:50097 - "GET / HTTP/1.1" 200
+2026-03-16 15:52:48,062 - uvicorn.access - INFO - 127.0.0.1:50097 - "GET / HTTP/1.1" 200
+2026-03-16 15:52:48,074 - uvicorn.access - INFO - 127.0.0.1:50097 - "GET /static/styles.css HTTP/1.1" 200
+2026-03-16 16:59:54,893 - uvicorn.error - INFO - Started server process [39780]
+2026-03-16 16:59:54,893 - uvicorn.error - INFO - Waiting for application startup.
+2026-03-16 16:59:54,893 - uvicorn.error - INFO - Application startup complete.
+2026-03-16 16:59:58,170 - uvicorn.access - INFO - 127.0.0.1:64942 - "GET / HTTP/1.1" 200
+2026-03-16 16:59:58,192 - uvicorn.access - INFO - 127.0.0.1:64942 - "GET /static/styles.css HTTP/1.1" 200
+2026-03-16 16:59:58,480 - uvicorn.access - INFO - 127.0.0.1:64942 - "GET /favicon.ico HTTP/1.1" 404
+2026-03-16 17:04:25,061 - uvicorn.access - INFO - 127.0.0.1:57773 - "GET / HTTP/1.1" 200
+2026-03-16 17:07:24,211 - uvicorn.access - INFO - 127.0.0.1:57636 - "GET / HTTP/1.1" 200
+2026-03-16 17:07:24,237 - uvicorn.access - INFO - 127.0.0.1:57636 - "GET /static/styles.css HTTP/1.1" 200
+2026-03-16 17:07:24,497 - uvicorn.access - INFO - 127.0.0.1:57636 - "GET /favicon.ico HTTP/1.1" 404
+2026-03-16 17:08:33,152 - app.services.llm_service - INFO - LLM Service initialized. Model: gpt-4o-mini | Key loaded: sk-proj-...It0A
+2026-03-16 17:08:33,154 - app.services.student_service - INFO - Loaded 1 students from N:\tectra tech works\CON AI\app\core\../../app/database/students_data.json
+2026-03-16 17:08:33,155 - app.services.student_service - INFO - Indexed 1 phone numbers.
+2026-03-16 17:08:33,155 - app.services.cache_service - INFO - Initialized InMemoryCache
+2026-03-16 17:08:33,156 - app.orchestrator.orchestrator - INFO - System prompt loaded from N:\tectra tech works\CON AI\app\prompts\system_prompt.txt
+2026-03-16 17:08:33,162 - app.orchestrator.orchestrator - INFO - Intent: greeting (Conf: 1.0)
+2026-03-16 17:08:33,163 - app.orchestrator.orchestrator - INFO - Tier 3 Response (LLM)
+2026-03-16 17:08:35,665 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 17:08:35,681 - app.services.llm_service - INFO - LLM Success. Tokens: 476 (Prompt: 460, Completion: 16)
+2026-03-16 17:08:35,681 - app.orchestrator.orchestrator - INFO - Total Latency: 2.5193s
+2026-03-16 17:08:35,683 - uvicorn.access - INFO - 127.0.0.1:49399 - "POST /api/v1/chat HTTP/1.1" 200
+2026-03-16 17:15:13,402 - app.intelligence.intent_detector - INFO - Loading sentence-transformers model (all-MiniLM-L6-v2)...
+2026-03-16 17:15:13,404 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2026-03-16 17:15:13,404 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-03-16 17:15:14,054 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-16 17:15:14,099 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-16 17:15:14,376 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-16 17:15:14,377 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-03-16 17:15:14,384 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-16 17:15:14,631 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-16 17:15:14,640 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-16 17:15:14,868 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-16 17:15:14,881 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+2026-03-16 17:15:15,127 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-16 17:15:15,138 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-16 17:15:15,383 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-16 17:15:15,395 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-16 17:15:15,634 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-16 17:15:15,860 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-16 17:15:15,869 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-16 17:15:16,395 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-16 17:15:16,408 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-16 17:15:16,640 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-16 17:15:16,652 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-16 17:15:16,916 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-16 17:15:17,148 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-16 17:15:17,506 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-16 17:15:17,519 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-16 17:15:17,785 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-03-16 17:15:18,119 - app.intelligence.intent_detector - INFO - Sentence-transformers model loaded successfully.
+2026-03-16 17:15:18,142 - app.orchestrator.orchestrator - INFO - Intent: profile (Conf: 0.46)
+2026-03-16 17:15:18,142 - app.orchestrator.orchestrator - INFO - Tier 3 Response (LLM)
+2026-03-16 17:15:21,245 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 17:15:21,247 - app.services.llm_service - INFO - LLM Success. Tokens: 546 (Prompt: 490, Completion: 56)
+2026-03-16 17:15:21,248 - app.orchestrator.orchestrator - INFO - Total Latency: 52.8889s
+2026-03-16 17:15:21,248 - uvicorn.access - INFO - 127.0.0.1:54213 - "POST /api/v1/chat HTTP/1.1" 200
+2026-03-16 17:24:06,426 - uvicorn.access - INFO - 127.0.0.1:62509 - "GET / HTTP/1.1" 200
+2026-03-16 17:24:06,456 - uvicorn.access - INFO - 127.0.0.1:62509 - "GET /static/styles.css HTTP/1.1" 200
+2026-03-16 17:24:16,443 - app.orchestrator.orchestrator - INFO - Intent: greeting (Conf: 1.0)
+2026-03-16 17:24:16,444 - app.orchestrator.orchestrator - INFO - Tier 3 Response (LLM)
+2026-03-16 17:24:18,110 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 17:24:18,111 - app.services.llm_service - INFO - LLM Success. Tokens: 477 (Prompt: 461, Completion: 16)
+2026-03-16 17:24:18,111 - app.orchestrator.orchestrator - INFO - Total Latency: 1.6679s
+2026-03-16 17:24:18,112 - uvicorn.access - INFO - 127.0.0.1:49667 - "POST /chat HTTP/1.1" 200
+2026-03-16 17:26:42,662 - app.orchestrator.orchestrator - INFO - Intent: unknown (Conf: 0.0)
+2026-03-16 17:26:42,663 - app.orchestrator.orchestrator - INFO - Tier 3 Response (LLM)
+2026-03-16 17:26:44,861 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 17:26:44,862 - app.services.llm_service - INFO - LLM Success. Tokens: 1319 (Prompt: 1304, Completion: 15)
+2026-03-16 17:26:44,862 - app.orchestrator.orchestrator - INFO - Total Latency: 2.2172s
+2026-03-16 17:26:44,862 - uvicorn.access - INFO - 127.0.0.1:63301 - "POST /chat HTTP/1.1" 200
+2026-03-16 17:27:00,658 - app.orchestrator.orchestrator - INFO - Intent: admission_status (Conf: 0.46)
+2026-03-16 17:27:00,659 - app.orchestrator.orchestrator - INFO - Tier 3 Response (LLM)
+2026-03-16 17:27:03,981 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 17:27:03,982 - app.services.llm_service - INFO - LLM Success. Tokens: 899 (Prompt: 810, Completion: 89)
+2026-03-16 17:27:03,983 - app.orchestrator.orchestrator - INFO - Total Latency: 3.3577s
+2026-03-16 17:27:03,983 - uvicorn.access - INFO - 127.0.0.1:55855 - "POST /chat HTTP/1.1" 200
+2026-03-16 17:28:44,179 - app.orchestrator.orchestrator - INFO - Intent: unknown (Conf: 0.0)
+2026-03-16 17:28:44,180 - app.orchestrator.orchestrator - INFO - Tier 3 Response (LLM)
+2026-03-16 17:28:45,800 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 17:28:45,802 - app.services.llm_service - INFO - LLM Success. Tokens: 1462 (Prompt: 1435, Completion: 27)
+2026-03-16 17:28:45,802 - app.orchestrator.orchestrator - INFO - Total Latency: 1.6462s
+2026-03-16 17:28:45,802 - uvicorn.access - INFO - 127.0.0.1:59501 - "POST /chat HTTP/1.1" 200
+2026-03-16 17:28:55,845 - app.orchestrator.orchestrator - INFO - Intent: unknown (Conf: 0.0)
+2026-03-16 17:28:55,846 - app.orchestrator.orchestrator - INFO - Tier 3 Response (LLM)
+2026-03-16 17:28:58,460 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 17:28:58,462 - app.services.llm_service - INFO - LLM Success. Tokens: 1504 (Prompt: 1474, Completion: 30)
+2026-03-16 17:28:58,462 - app.orchestrator.orchestrator - INFO - Total Latency: 2.6407s
+2026-03-16 17:28:58,463 - uvicorn.access - INFO - 127.0.0.1:63704 - "POST /chat HTTP/1.1" 200
+2026-03-16 17:29:19,167 - app.orchestrator.orchestrator - INFO - Intent: fees (Conf: 1.0)
+2026-03-16 17:29:19,168 - app.orchestrator.orchestrator - INFO - Tier 1 Response
+2026-03-16 17:29:19,168 - app.orchestrator.orchestrator - INFO - Total Latency: 0.0007s
+2026-03-16 17:29:19,168 - uvicorn.access - INFO - 127.0.0.1:65462 - "POST /chat HTTP/1.1" 200
+2026-03-16 17:41:38,581 - app.orchestrator.orchestrator - INFO - Intent: unknown (Conf: 0.0)
+2026-03-16 17:41:38,582 - app.orchestrator.orchestrator - INFO - Tier 3 Response (LLM)
+2026-03-16 17:41:40,501 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 17:41:40,503 - app.services.llm_service - INFO - LLM Success. Tokens: 1653 (Prompt: 1616, Completion: 37)
+2026-03-16 17:41:40,503 - app.orchestrator.orchestrator - INFO - Total Latency: 1.9421s
+2026-03-16 17:41:40,503 - uvicorn.access - INFO - 127.0.0.1:53185 - "POST /chat HTTP/1.1" 200
+2026-03-16 17:41:54,099 - app.orchestrator.orchestrator - INFO - Intent: unknown (Conf: 0.0)
+2026-03-16 17:41:54,099 - app.orchestrator.orchestrator - INFO - Tier 3 Response (LLM)
+2026-03-16 17:41:55,216 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 17:41:55,218 - app.services.llm_service - INFO - LLM Success. Tokens: 1663 (Prompt: 1640, Completion: 23)
+2026-03-16 17:41:55,218 - app.orchestrator.orchestrator - INFO - Total Latency: 1.1395s
+2026-03-16 17:41:55,218 - uvicorn.access - INFO - 127.0.0.1:62620 - "POST /chat HTTP/1.1" 200
+2026-03-16 17:42:06,552 - app.orchestrator.orchestrator - INFO - Intent: greeting (Conf: 0.49)
+2026-03-16 17:42:06,552 - app.orchestrator.orchestrator - INFO - Tier 3 Response (LLM)
+2026-03-16 17:42:07,864 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 17:42:07,871 - app.services.llm_service - INFO - LLM Success. Tokens: 1603 (Prompt: 1569, Completion: 34)
+2026-03-16 17:42:07,871 - app.orchestrator.orchestrator - INFO - Total Latency: 1.3482s
+2026-03-16 17:42:07,872 - uvicorn.access - INFO - 127.0.0.1:59125 - "POST /chat HTTP/1.1" 200
+2026-03-16 17:42:16,875 - app.orchestrator.orchestrator - INFO - Intent: unknown (Conf: 0.0)
+2026-03-16 17:42:16,875 - app.orchestrator.orchestrator - INFO - Tier 3 Response (LLM)
+2026-03-16 17:42:18,428 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 17:42:18,437 - app.services.llm_service - INFO - LLM Success. Tokens: 1611 (Prompt: 1577, Completion: 34)
+2026-03-16 17:42:18,437 - app.orchestrator.orchestrator - INFO - Total Latency: 1.5808s
+2026-03-16 17:42:18,437 - uvicorn.access - INFO - 127.0.0.1:64975 - "POST /chat HTTP/1.1" 200
+2026-03-16 17:42:23,662 - app.orchestrator.orchestrator - INFO - Intent: greeting (Conf: 0.53)
+2026-03-16 17:42:23,662 - app.orchestrator.orchestrator - INFO - Tier 3 Response (LLM)
+2026-03-16 17:42:24,664 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 17:42:24,666 - app.services.llm_service - INFO - LLM Success. Tokens: 1602 (Prompt: 1578, Completion: 24)
+2026-03-16 17:42:24,666 - app.orchestrator.orchestrator - INFO - Total Latency: 1.0278s
+2026-03-16 17:42:24,666 - uvicorn.access - INFO - 127.0.0.1:57470 - "POST /chat HTTP/1.1" 200
+2026-03-16 17:42:25,985 - app.orchestrator.orchestrator - INFO - Intent: unknown (Conf: 0.0)
+2026-03-16 17:42:25,986 - app.orchestrator.orchestrator - INFO - Tier 2 Response
+2026-03-16 17:42:25,986 - app.orchestrator.orchestrator - INFO - Total Latency: 0.0297s
+2026-03-16 17:42:25,987 - uvicorn.access - INFO - 127.0.0.1:57470 - "POST /chat HTTP/1.1" 200
+2026-03-16 18:36:07,371 - uvicorn.access - INFO - 127.0.0.1:58412 - "GET / HTTP/1.1" 200
+2026-03-16 18:36:07,390 - uvicorn.access - INFO - 127.0.0.1:58412 - "GET /static/styles.css HTTP/1.1" 304
+2026-03-16 18:36:07,407 - uvicorn.access - INFO - 127.0.0.1:58412 - "GET /favicon.ico HTTP/1.1" 404

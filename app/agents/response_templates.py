@@ -11,10 +11,16 @@ def _fmt(amount: Any) -> str:
     if amount is None:
         return "N/A"
     try:
-        amount = int(amount)
-        s = str(amount)
+        # Handle decimal strings/floats by converting to int
+        amount_int = int(float(amount))
+        is_negative = amount_int < 0
+        s = str(abs(amount_int))
+        
+        prefix = "-Rs. " if is_negative else "Rs. "
+        
         if len(s) <= 3:
-            return f"Rs. {s}"
+            return f"{prefix}{s}"
+            
         last3 = s[-3:]
         remaining = s[:-3]
         groups = []
@@ -22,7 +28,7 @@ def _fmt(amount: Any) -> str:
             groups.append(remaining[-2:])
             remaining = remaining[:-2]
         groups.reverse()
-        return f"Rs. {','.join(groups)},{last3}"
+        return f"{prefix}{','.join(groups)},{last3}"
     except (ValueError, TypeError):
         return f"Rs. {amount}"
 
@@ -359,6 +365,7 @@ TEMPLATE_REGISTRY = {
     "counselor": template_counselor,
     "college": template_college,
     "support": template_support,
+    "contact": template_support,
     "unknown": template_unknown,
 }
 

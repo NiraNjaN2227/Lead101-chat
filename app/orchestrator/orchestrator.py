@@ -115,8 +115,10 @@ class Orchestrator:
         start_time = time.time()
         
         # 0. Normalise message for consistent cache keying
+        import hashlib
         _normalised = user_message.lower().strip()
-        cache_key = f"{student_id}:{session_id}:{hash(_normalised)}"
+        msg_hash = hashlib.md5(_normalised.encode()).hexdigest()
+        cache_key = f"{student_id}:{session_id}:{msg_hash}"
         cached_response = await self.cache_service.get(cache_key)
         if cached_response:
             self.metrics["cache_hits"] += 1

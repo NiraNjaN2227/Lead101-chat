@@ -55,9 +55,10 @@ class ContextBuilder:
             relevant_data["admission_status"] = student_data.get("admission_info", {}).get("admission_status")
             
         elif intent == "contact" or intent == "support" or intent == "counselor":
-            # Flatten support_info
-            support_info = student_data.get("support_info", {})
-            relevant_data.update(support_info)
+            # Do NOT flatten support_info because template_support expects d.get("support_info")
+            relevant_data["support_info"] = student_data.get("support_info", {})
+            # However, template_counselor expects flattened 'assigned_counselor'
+            relevant_data.update(student_data.get("support_info", {}))
             relevant_data["college_details"] = student_data.get("admission_info", {}).get("college_details")
 
         elif intent == "college":

@@ -1,189 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Student Assistant</title>
-    <!-- Marked.js for Markdown parsing -->
+    <title>CON AI – Student Admission Assistant</title>
+    <meta name="description" content="CON AI – Your personalised student admission assistant powered by AI.">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link rel="stylesheet" href="/static/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Minimal icon set (lines, no distracting solid icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
 
-    <div class="chat-container">
-        <header>
-            <h1>AI Student Assistant</h1>
-            <button id="reset-btn" title="Clear Chat History">
-                <i class="fas fa-trash-alt"></i> Clear Chat
-            </button>
-        </header>
+<div class="chat-container">
 
-        <div id="chat-window">
-            <!-- Welcome Message -->
-            <div class="message assistant">
-                <div class="message-content">
-                    <div class="avatar">🤖</div>
-                    <div class="text">Hi there! I'm your admission assistant. To get started, could you share your
-                        student ID? It looks like STU2026XXXX.</div>
+    <!-- ── Header ──────────────────────────────── -->
+    <header>
+        <div class="header-left">
+            <div class="header-icon" aria-hidden="true">
+                <!-- Clean text-based mark only, no emoji -->
+                <span style="font-size:0.85rem;font-weight:700;letter-spacing:-0.5px;">CON</span>
+            </div>
+            <div class="header-title-block">
+                <h1>Student Admission Assistant</h1>
+                <div class="header-subtitle">
+                    <span class="status-dot" title="Online"></span>
+                    <span>AI-powered · Online</span>
+                </div>
+            </div>
+        </div>
+        <button id="reset-btn" title="Reset conversation">
+            <i class="fa-regular fa-arrow-rotate-right" style="font-size:0.8rem;"></i> Reset
+        </button>
+    </header>
+
+    <!-- ── Chat Window ─────────────────────────── -->
+    <div id="chat-window" role="log" aria-live="polite" aria-label="Chat messages">
+
+        <!-- Welcome message -->
+        <div class="message assistant">
+            <div class="message-content">
+                <div class="avatar" aria-hidden="true">AI</div>
+                <div class="bubble-group">
+                    <div class="message-bubble">
+                        Hello! I'm your CON AI Admission Assistant. Please share your <strong>Student ID</strong> (e.g. STU2026XXXX) to get started, or choose one of the common questions below.
+                    </div>
+                    <div class="message-meta">
+                        <span class="message-time">Just now</span>
+                    </div>
+                    <div class="quick-prompts">
+                        <button type="button" class="quick-prompt" data-prompt="What documents do I need for admission?">Documents required</button>
+                        <button type="button" class="quick-prompt" data-prompt="When is the application deadline?">Application deadline</button>
+                        <button type="button" class="quick-prompt" data-prompt="How do I check my application status?">Check application status</button>
+                        <button type="button" class="quick-prompt" data-prompt="What are the fee structure and payment options?">Fees &amp; payment</button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="input-area">
-            <div class="input-container">
-                <input type="text" id="user-input" placeholder="Type a message..." autocomplete="off">
-                <button id="send-btn">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
-                    </svg>
-                </button>
-            </div>
+    </div><!-- /#chat-window -->
+
+    <!-- ── Input Area ──────────────────────────── -->
+    <div class="input-area">
+        <div class="suggested-chips" aria-label="Suggested topics">
+            <button type="button" class="chip" data-prompt="Tell me about course requirements">Course requirements</button>
+            <button type="button" class="chip" data-prompt="How do I contact the admissions office?">Contact admissions</button>
+            <button type="button" class="chip" data-prompt="What scholarships are available?">Scholarships</button>
+        </div>
+        <div class="input-wrapper">
+            <input
+                type="text"
+                id="user-input"
+                placeholder="Type your message…"
+                autocomplete="off"
+                aria-label="Your message"
+            >
+            <button id="send-btn" type="button" title="Send message" aria-label="Send">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            </button>
         </div>
     </div>
 
-    <script>
-        const chatWindow = document.getElementById('chat-window');
-        const userInput = document.getElementById('user-input');
-        const sendBtn = document.getElementById('send-btn');
-        const resetBtn = document.getElementById('reset-btn');
+    <!-- ── Footer ──────────────────────────────── -->
+    <footer class="chat-footer">
+        CON AI &middot; Secure &middot; Data is not stored permanently
+    </footer>
 
-        // Session ID (simple simulation)
-        const SESSION_ID = "web-session-" + Math.random().toString(36).substring(7);
-        let STUDENT_ID = "";
+</div><!-- /.chat-container -->
 
-        function appendMessage(role, text) {
-            const msgDiv = document.createElement('div');
-            msgDiv.className = `message ${role}`;
+<script>
+    // ── Config ─────────────────────────────────────────────
+    const chatWindow = document.getElementById('chat-window');
+    const userInput  = document.getElementById('user-input');
+    const sendBtn    = document.getElementById('send-btn');
+    const resetBtn   = document.getElementById('reset-btn');
 
-            const contentDiv = document.createElement('div');
-            contentDiv.className = 'message-content';
+    const SESSION_ID = 'web-' + Math.random().toString(36).slice(2, 9);
+    let   STUDENT_ID = '';
 
-            const avatar = document.createElement('div');
-            avatar.className = 'avatar';
-            avatar.textContent = role === 'user' ? '👤' : '🤖';
+    marked.setOptions({ breaks: true, gfm: true });
 
-            const textDiv = document.createElement('div');
-            textDiv.className = 'text';
+    // ── Utilities ────────────────────────────────────────
+    function formatTime() {
+        return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
 
-            if (role === 'assistant') {
-                // Parse markdown for assistant replies
-                textDiv.innerHTML = marked.parse(text);
-            } else {
-                textDiv.innerText = text; // Safe text insertion for user input
-            }
+    function scrollToBottom() {
+        chatWindow.scrollTo({ top: chatWindow.scrollHeight, behavior: 'smooth' });
+    }
 
-            contentDiv.appendChild(avatar);
-            contentDiv.appendChild(textDiv);
-            msgDiv.appendChild(contentDiv);
+    // ── Append Message ───────────────────────────────────
+    function appendMessage(role, text) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `message ${role}`;
 
-            chatWindow.appendChild(msgDiv);
-            chatWindow.scrollTop = chatWindow.scrollHeight;
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'message-content';
+
+        // Avatar: text initials only for professionalism
+        const avatar = document.createElement('div');
+        avatar.className = 'avatar';
+        avatar.setAttribute('aria-hidden', 'true');
+        avatar.textContent = role === 'user' ? 'You' : 'AI';
+
+        // Bubble group wrapper
+        const bubbleGroup = document.createElement('div');
+        bubbleGroup.className = 'bubble-group';
+
+        const bubble = document.createElement('div');
+        bubble.className = 'message-bubble';
+
+        if (role === 'assistant') {
+            bubble.innerHTML = marked.parse(text);
+        } else {
+            bubble.textContent = text;
         }
 
-        async function sendMessage() {
-            const text = userInput.value.trim();
-            if (!text) return;
+        // Meta row
+        const meta = document.createElement('div');
+        meta.className = 'message-meta';
 
+        const timeSpan = document.createElement('span');
+        timeSpan.className = 'message-time';
+        timeSpan.textContent = formatTime();
+        meta.appendChild(timeSpan);
 
-
-            // 1. Append User Message
-            appendMessage('user', text);
-            userInput.value = '';
-
-            // 2. Show Typing Indicator
-            const typingId = 'typing-' + Date.now();
-            showTypingIndicator(typingId);
-
-            try {
-                const response = await fetch('/chat', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        user_message: text,
-                        student_id: STUDENT_ID,
-                        session_id: SESSION_ID
-                    })
-                });
-
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
-                const data = await response.json();
-
-                // Remove Typing Indicator
-                removeTypingIndicator(typingId);
-
-                // 3. Append Assistant Reply
-                appendMessage('assistant', data.reply);
-
-            } catch (error) {
-                console.error('Error:', error);
-                removeTypingIndicator(typingId);
-                appendMessage('assistant', "Sorry, I encountered an error. Please try again.");
-            }
+        if (role === 'assistant') {
+            const copyBtn = document.createElement('button');
+            copyBtn.type = 'button';
+            copyBtn.className = 'copy-btn';
+            copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy';
+            copyBtn.title = 'Copy response';
+            copyBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(text).then(() => {
+                    copyBtn.innerHTML = '<i class="fa-regular fa-circle-check"></i> Copied';
+                    setTimeout(() => {
+                        copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy';
+                    }, 2000);
+                }).catch(() => {});
+            });
+            meta.appendChild(copyBtn);
         }
 
-        // Event Listeners
-        sendBtn.addEventListener('click', sendMessage);
-        userInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
-        });
+        bubbleGroup.appendChild(bubble);
+        bubbleGroup.appendChild(meta);
+        contentDiv.appendChild(avatar);
+        contentDiv.appendChild(bubbleGroup);
+        msgDiv.appendChild(contentDiv);
+        chatWindow.appendChild(msgDiv);
+        scrollToBottom();
+    }
 
-        resetBtn.addEventListener('click', async () => {
-            if (confirm("Are you sure you want to clear the chat history?")) {
-                try {
-                    await fetch(`/session/${SESSION_ID}`, { method: 'DELETE' });
-                    // Clear the UI
-                    chatWindow.innerHTML = `
-                        <div class="message assistant">
-                            <div class="message-content">
-                                <div class="avatar">🤖</div>
-                                <div class="text">Chat history cleared. How can I help you today?</div>
-                            </div>
-                        </div>
-                    `;
-                } catch (e) {
-                    console.error("Failed to clear session", e);
-                }
-            }
-        });
-
-        // Helper functions for typing indicator
-        function showTypingIndicator(id) {
-            const msgDiv = document.createElement('div');
-            msgDiv.className = `message assistant`;
-            msgDiv.id = id;
-
-            msgDiv.innerHTML = `
-                <div class="message-content">
-                    <div class="avatar">🤖</div>
-                    <div class="text">
-                        <div class="typing-indicator">
+    // ── Typing Indicator ─────────────────────────────────
+    function showTyping(id) {
+        const div = document.createElement('div');
+        div.className = 'message assistant';
+        div.id = id;
+        div.innerHTML = `
+            <div class="message-content">
+                <div class="avatar" aria-hidden="true">AI</div>
+                <div class="bubble-group">
+                    <div class="message-bubble">
+                        <div class="typing-indicator" aria-label="Assistant is typing">
                             <div class="dot"></div>
                             <div class="dot"></div>
                             <div class="dot"></div>
                         </div>
                     </div>
                 </div>
-            `;
-            chatWindow.appendChild(msgDiv);
-            chatWindow.scrollTop = chatWindow.scrollHeight;
-        }
+            </div>`;
+        chatWindow.appendChild(div);
+        scrollToBottom();
+    }
 
-        function removeTypingIndicator(id) {
-            const indicator = document.getElementById(id);
-            if (indicator) {
-                indicator.remove();
-            }
+    function removeTyping(id) {
+        const el = document.getElementById(id);
+        if (el) el.remove();
+    }
+
+    // ── Send Message ─────────────────────────────────────
+    async function sendMessage(textToSend) {
+        const text = (typeof textToSend === 'string' ? textToSend : userInput.value).trim();
+        if (!text) return;
+
+        appendMessage('user', text);
+        userInput.value = '';
+        sendBtn.disabled = true;
+
+        const typingId = 'typing-' + Date.now();
+        setTimeout(() => showTyping(typingId), 250);
+
+        try {
+            const res = await fetch('/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user_message: text, student_id: STUDENT_ID, session_id: SESSION_ID })
+            });
+
+            if (!res.ok) throw new Error(`Server error: ${res.status}`);
+            const data = await res.json();
+
+            removeTyping(typingId);
+            appendMessage('assistant', data.reply || 'I did not receive a valid response. Please try again.');
+        } catch (err) {
+            console.error(err);
+            removeTyping(typingId);
+            appendMessage('assistant', 'Sorry, something went wrong connecting to the server. Please try again.');
+        } finally {
+            sendBtn.disabled = false;
+            userInput.focus();
         }
-    </script>
+    }
+
+    // ── Event Listeners ──────────────────────────────────
+    sendBtn.addEventListener('click', () => sendMessage());
+
+    userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+    });
+
+    // Delegated handler for quick-prompts and chips (works after DOM reset too)
+    document.body.addEventListener('click', (e) => {
+        const el = e.target.closest('.quick-prompt, .chip');
+        if (el) {
+            const prompt = el.dataset.prompt;
+            if (prompt) sendMessage(prompt);
+        }
+    });
+
+    resetBtn.addEventListener('click', async () => {
+        if (!confirm('Reset the conversation?')) return;
+        try { await fetch('/session/' + SESSION_ID, { method: 'DELETE' }); } catch {}
+        chatWindow.innerHTML = `
+            <div class="message assistant">
+                <div class="message-content">
+                    <div class="avatar" aria-hidden="true">AI</div>
+                    <div class="bubble-group">
+                        <div class="message-bubble">Conversation reset. How can I assist you?</div>
+                        <div class="message-meta"><span class="message-time">${formatTime()}</span></div>
+                        <div class="quick-prompts">
+                            <button type="button" class="quick-prompt" data-prompt="What documents do I need for admission?">Documents required</button>
+                            <button type="button" class="quick-prompt" data-prompt="When is the application deadline?">Application deadline</button>
+                            <button type="button" class="quick-prompt" data-prompt="How do I check my application status?">Check application status</button>
+                            <button type="button" class="quick-prompt" data-prompt="What are the fee structure and payment options?">Fees &amp; payment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+        STUDENT_ID = '';
+    });
+
+    // Auto-focus
+    userInput.focus();
+</script>
 
 </body>
-
 </html>
