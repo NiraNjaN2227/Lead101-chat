@@ -766,3 +766,35 @@
 2026-03-16 18:36:07,371 - uvicorn.access - INFO - 127.0.0.1:58412 - "GET / HTTP/1.1" 200
 2026-03-16 18:36:07,390 - uvicorn.access - INFO - 127.0.0.1:58412 - "GET /static/styles.css HTTP/1.1" 304
 2026-03-16 18:36:07,407 - uvicorn.access - INFO - 127.0.0.1:58412 - "GET /favicon.ico HTTP/1.1" 404
+2026-03-19 11:36:58,989 - uvicorn.error - INFO - Started server process [26164]
+2026-03-19 11:36:58,990 - uvicorn.error - INFO - Waiting for application startup.
+2026-03-19 11:36:58,991 - uvicorn.error - INFO - Application startup complete.
+2026-03-19 11:38:42,874 - uvicorn.error - INFO - Started server process [18244]
+2026-03-19 11:38:42,875 - uvicorn.error - INFO - Waiting for application startup.
+2026-03-19 11:38:42,875 - uvicorn.error - INFO - Application startup complete.
+2026-03-19 11:39:28,197 - uvicorn.access - INFO - 127.0.0.1:10940 - "GET / HTTP/1.1" 200
+2026-03-19 11:39:28,392 - uvicorn.access - INFO - 127.0.0.1:10940 - "GET /static/styles.css HTTP/1.1" 200
+2026-03-19 11:39:29,718 - uvicorn.access - INFO - 127.0.0.1:10940 - "GET /favicon.ico HTTP/1.1" 404
+2026-03-19 11:39:33,046 - app.services.llm_service - INFO - LLM Service initialized. Model: gpt-4o-mini | Key loaded: sk-proj-...It0A
+2026-03-19 11:39:33,047 - app.services.student_service - INFO - Loaded 1 students from C:\Projects\chatbot\Lead101-chat\app\core\../../app/database/students_data.json
+2026-03-19 11:39:33,047 - app.services.student_service - INFO - Indexed 1 phone numbers.
+2026-03-19 11:39:33,047 - app.services.cache_service - INFO - Initialized InMemoryCache
+2026-03-19 11:39:33,048 - app.orchestrator.orchestrator - INFO - System prompt loaded from C:\Projects\chatbot\Lead101-chat\app\prompts\system_prompt.txt
+2026-03-19 11:39:33,050 - app.orchestrator.orchestrator - INFO - Intent: admission_status (Conf: 1.0)
+2026-03-19 11:39:33,050 - app.orchestrator.orchestrator - INFO - Tier 2 Response
+2026-03-19 11:39:33,050 - app.orchestrator.orchestrator - INFO - Total Latency: 0.0010s
+2026-03-19 11:39:33,051 - uvicorn.access - INFO - 127.0.0.1:10940 - "POST /chat HTTP/1.1" 200
+2026-03-19 11:39:38,039 - app.orchestrator.orchestrator - INFO - Intent: greeting (Conf: 0.8)
+2026-03-19 11:39:38,039 - app.orchestrator.orchestrator - INFO - Tier 3 Response (LLM)
+2026-03-19 11:39:39,121 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-03-19 11:39:39,122 - app.services.llm_service - ERROR - LLM Authentication Failed: Invalid API Key.
+2026-03-19 11:39:39,123 - app.orchestrator.orchestrator - ERROR - LLM Failed: Invalid API Key.
+2026-03-19 11:39:39,123 - app.orchestrator.orchestrator - INFO - Total Latency: 1.0853s
+2026-03-19 11:39:39,123 - uvicorn.access - INFO - 127.0.0.1:10940 - "POST /chat HTTP/1.1" 200
+2026-03-19 11:41:35,659 - uvicorn.access - INFO - 127.0.0.1:6617 - "DELETE /session/web-dpa7dmu HTTP/1.1" 200
+2026-03-19 11:41:42,042 - uvicorn.access - INFO - 127.0.0.1:6139 - "GET / HTTP/1.1" 200
+2026-03-19 11:41:50,342 - uvicorn.access - INFO - 127.0.0.1:4189 - "DELETE /session/web-vbevgl1 HTTP/1.1" 200
+2026-03-19 11:42:02,282 - uvicorn.access - INFO - 127.0.0.1:3999 - "GET / HTTP/1.1" 200
+2026-03-19 11:42:32,749 - uvicorn.access - INFO - 127.0.0.1:6290 - "GET / HTTP/1.1" 200
+2026-03-19 11:42:38,365 - uvicorn.access - INFO - 127.0.0.1:13163 - "GET / HTTP/1.1" 200
+2026-03-19 11:42:43,472 - uvicorn.access - INFO - 127.0.0.1:6685 - "GET / HTTP/1.1" 200

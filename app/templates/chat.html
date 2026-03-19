@@ -3,35 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+    (function(){try{var k='con-ai-theme',v=localStorage.getItem(k),d=window.matchMedia('(prefers-color-scheme:dark)').matches;
+    document.documentElement.setAttribute('data-theme',v==='light'||v==='dark'?v:(d?'dark':'light'));}catch(e){}})();
+    </script>
     <title>CON AI – Student Admission Assistant</title>
     <meta name="description" content="CON AI – Your personalised student admission assistant powered by AI.">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link rel="stylesheet" href="/static/styles.css">
-    <!-- Minimal icon set (lines, no distracting solid icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
 <div class="chat-container">
 
-    <!-- ── Header ──────────────────────────────── -->
-    <header>
+    <header class="chat-header">
         <div class="header-left">
             <div class="header-icon" aria-hidden="true">
-                <!-- Clean text-based mark only, no emoji -->
-                <span style="font-size:0.85rem;font-weight:700;letter-spacing:-0.5px;">CON</span>
+                <i class="fa-solid fa-graduation-cap"></i>
             </div>
             <div class="header-title-block">
-                <h1>Student Admission Assistant</h1>
-                <div class="header-subtitle">
-                    <span class="status-dot" title="Online"></span>
-                    <span>AI-powered · Online</span>
-                </div>
+                <h1>CON AI <span class="header-badge">Admissions</span></h1>
+                <p class="header-subtitle">
+                    <span class="status-dot" title="Online" aria-hidden="true"></span>
+                    Ready to help with your application
+                </p>
             </div>
         </div>
-        <button id="reset-btn" title="Reset conversation">
-            <i class="fa-regular fa-arrow-rotate-right" style="font-size:0.8rem;"></i> Reset
-        </button>
+        <div class="header-actions">
+            <div class="theme-toggle" role="radiogroup" aria-label="Color theme">
+                <button type="button" class="theme-toggle-option" data-theme="light" role="radio" aria-checked="false" title="Light mode">
+                    <i class="fa-solid fa-sun" aria-hidden="true"></i><span class="sr-only">Light</span>
+                </button>
+                <button type="button" class="theme-toggle-option" data-theme="dark" role="radio" aria-checked="false" title="Dark mode">
+                    <i class="fa-solid fa-moon" aria-hidden="true"></i><span class="sr-only">Dark</span>
+                </button>
+                <button type="button" class="theme-toggle-option" data-theme="system" role="radio" aria-checked="true" title="Use device theme">
+                    <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i><span class="sr-only">Match system</span>
+                </button>
+            </div>
+            <button type="button" id="reset-btn" class="btn-icon-text" title="Start fresh chat">
+                <i class="fa-regular fa-arrow-rotate-right" aria-hidden="true"></i>
+                <span>New chat</span>
+            </button>
+        </div>
     </header>
 
     <!-- ── Chat Window ─────────────────────────── -->
@@ -81,14 +96,46 @@
         </div>
     </div>
 
-    <!-- ── Footer ──────────────────────────────── -->
     <footer class="chat-footer">
-        CON AI &middot; Secure &middot; Data is not stored permanently
+        <span>CON AI</span><span class="footer-sep" aria-hidden="true">·</span><span>Secure</span><span class="footer-sep" aria-hidden="true">·</span><span>Not stored permanently</span>
     </footer>
 
-</div><!-- /.chat-container -->
+</div>
 
 <script>
+    (function themeInit() {
+        const STORAGE_KEY = 'con-ai-theme';
+        const mq = window.matchMedia('(prefers-color-scheme: dark)');
+        function getMode() {
+            const v = localStorage.getItem(STORAGE_KEY);
+            return v === 'light' || v === 'dark' ? v : 'system';
+        }
+        function resolvedTheme(mode) {
+            if (mode === 'light' || mode === 'dark') return mode;
+            return mq.matches ? 'dark' : 'light';
+        }
+        function applyTheme() {
+            const mode = getMode();
+            document.documentElement.setAttribute('data-theme', resolvedTheme(mode));
+            document.querySelectorAll('.theme-toggle-option').forEach((btn) => {
+                const t = btn.dataset.theme;
+                const active = mode === 'system' ? t === 'system' : mode === t;
+                btn.classList.toggle('active', active);
+                btn.setAttribute('aria-checked', active ? 'true' : 'false');
+            });
+        }
+        applyTheme();
+        mq.addEventListener('change', () => { if (getMode() === 'system') applyTheme(); });
+        document.querySelector('.theme-toggle')?.addEventListener('click', (e) => {
+            const btn = e.target.closest('.theme-toggle-option');
+            if (!btn) return;
+            const t = btn.dataset.theme;
+            if (t === 'system') localStorage.removeItem(STORAGE_KEY);
+            else localStorage.setItem(STORAGE_KEY, t);
+            applyTheme();
+        });
+    })();
+
     // ── Config ─────────────────────────────────────────────
     const chatWindow = document.getElementById('chat-window');
     const userInput  = document.getElementById('user-input');
