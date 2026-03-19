@@ -116,10 +116,13 @@
         }
         function applyTheme() {
             const mode = getMode();
-            document.documentElement.setAttribute('data-theme', resolvedTheme(mode));
+            const applied = resolvedTheme(mode);
+            document.documentElement.setAttribute('data-theme', applied);
             document.querySelectorAll('.theme-toggle-option').forEach((btn) => {
                 const t = btn.dataset.theme;
-                const active = mode === 'system' ? t === 'system' : mode === t;
+                // Bug 1 fix: reflect the *applied* theme on initial load/system mode.
+                // If mode is 'system', we highlight the resolved theme (light/dark), not the system button.
+                const active = t === applied;
                 btn.classList.toggle('active', active);
                 btn.setAttribute('aria-checked', active ? 'true' : 'false');
             });
@@ -198,13 +201,23 @@
             copyBtn.className = 'copy-btn';
             copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy';
             copyBtn.title = 'Copy response';
-            copyBtn.addEventListener('click', () => {
-                navigator.clipboard.writeText(text).then(() => {
+            // Bug 2 fix: prevent rapid clicks from queueing timeouts/clipboard writes.
+            let resetTimer = null;
+            copyBtn.addEventListener('click', async () => {
+                if (copyBtn.disabled) return;
+                copyBtn.disabled = true;
+                if (resetTimer) clearTimeout(resetTimer);
+                try {
+                    await navigator.clipboard.writeText(text);
                     copyBtn.innerHTML = '<i class="fa-regular fa-circle-check"></i> Copied';
-                    setTimeout(() => {
-                        copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy';
-                    }, 2000);
-                }).catch(() => {});
+                } catch (_) {
+                    copyBtn.innerHTML = '<i class="fa-regular fa-triangle-exclamation"></i> Failed';
+                }
+                resetTimer = setTimeout(() => {
+                    copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy';
+                    copyBtn.disabled = false;
+                    resetTimer = null;
+                }, 2000);
             });
             meta.appendChild(copyBtn);
         }
